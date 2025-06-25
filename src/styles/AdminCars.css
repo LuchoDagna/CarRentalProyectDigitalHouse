@@ -1,0 +1,38 @@
+.saveCarTitle{
+    width: 85%;
+}
+.saveCar{
+    width: 90%;
+    display: flex;
+    gap: 1%;
+    align-items: center;
+    padding: 0 20px;
+    border-radius: 50px;
+}
+.AdminCarsContainer{
+    margin-top: 8vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.AdminCarsContainer button{
+    white-space: nowrap;
+    padding: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+.carsTitle{
+    width: 85%;
+}
+.carsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+}
+select{
+    padding: 10px;
+    border: none;
+    border-radius: 50px;
+}

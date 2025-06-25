@@ -1,0 +1,132 @@
+.fondoPrincipal{
+    background-image: url(../assets/rutger-leistra-ZVmh74cP62U-unsplash.jpg);
+    background-size: cover;
+    aspect-ratio: 16/7;
+    background-position: bottom;
+    color: white;
+    padding: 8% 5%;
+    font-size: 6vw;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    line-height: 1.2;
+    letter-spacing: -6px;
+    font-family: "Montserrat", sans-serif;
+}
+.cars{
+    width: 95%;
+    margin: 0 auto;
+    display: grid;
+    gap: 5%;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+}
+.homeSearcher{
+    margin-top: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    gap: 4% ;
+    margin: 4vh auto;
+}
+.homeSearcher input{
+    width: 30%;
+    border: #004bad solid 2px;
+}
+.date-range-picker{
+    display: flex;
+    gap: 5%;
+}
+.date-range-picker input{
+    width: fit-content;
+    text-align: center;
+}
+.homeSearcher button{
+    background-color: #004bad;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+h1{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    width: fit-content;
+    white-space: nowrap;
+    
+}
+.CarsContainer{
+    width: 100%;
+    grid-column: span 3;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2%;
+    font-family: "Montserrat", sans-serif;
+
+}
+#price{
+    font-weight: 600;
+}
+.priceButton{
+    cursor: pointer;
+    display: flex;
+    height: 30px;
+    justify-content: space-around;
+}
+.filters{
+    border: #004bad7a solid 1px;
+    border-radius: 5vh;
+    padding: 1vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.filter{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.filter input{
+    width: fit-content;   
+    order: 2; 
+}
+.filter label{
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.cleanButton{
+    background-color: #004bad7a;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    margin: auto;
+    border-radius: 50px;
+    padding: 5px;
+    font-weight: 600;
+    font-size: 1vw;
+}
+.pagination{
+width: 100%;
+grid-column: span 5;
+display: flex;
+justify-content: center;
+gap: 10px;
+}
+.pagination button{
+    border: none;
+    font-size: 1.2rem;
+    background-color: transparent;
+    color: #004bad;
+    font-weight: 500;
+    cursor: pointer;
+}
+.pagination button:hover{
+    color: #004bad;
+    text-decoration: underline solid 1px #004bad;
+}

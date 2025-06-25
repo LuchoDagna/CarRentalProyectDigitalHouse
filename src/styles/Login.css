@@ -1,0 +1,19 @@
+.LoginPageContainer{
+    margin-top:7vh ;
+    height: 80vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loginContainer{
+    height: 50vh;
+    width: 50vw;
+    padding: 10rem;
+    border-radius: 40px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

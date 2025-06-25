@@ -1,0 +1,14 @@
+.adminUsersContainer{
+    margin-top: 8vh;
+}
+.adminUsersContainer h2{
+    width: 80%;
+    margin: 1vw auto;
+}
+.usersContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+}

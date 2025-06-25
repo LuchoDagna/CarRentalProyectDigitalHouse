@@ -1,0 +1,77 @@
+.AppointmentCard{
+    width: 50%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    padding: 2%;
+    background-color: #bfd2ea;
+    border-radius: 1vw;
+    font-size: 1vw;
+}
+.appointmentCardImgContainer{
+    aspect-ratio: 4/3;
+    width: 100%;
+    border-radius: 0;
+    overflow: hidden;
+}
+.appointmentCardImgContainer img{
+    width: 100%;
+    aspect-ratio: 4/3;   
+    object-fit: cover;
+}
+.appointmentCardInfoContainer{
+    width: 50%;
+    padding: 0 2%;
+
+}
+
+.appointmentCardInfoContainer p{
+    display: flex;
+    justify-content: space-between;
+    white-space: nowrap;
+}
+.appointmentCardWantsToCancel{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+.AppointmentCardCancelButton{
+    margin-top: 10%;
+    width: 100%;
+    border: none;
+    background-color: red;  
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 0.5vw;
+}
+.appointmentCardWantsToCancelContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    background-color: white;
+    width: 30vw;
+    height: 20vh;
+}
+.appointmentCardWantsToCancelContainer div{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+.appointmentCardWantsToCancelContainer button{
+    border: none;
+    padding: 1vw;
+    min-width: 10vw;
+    font-weight: 600;
+    cursor: pointer;
+}

@@ -1,0 +1,100 @@
+/* Reset CSS Completo */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+  color: #000;
+  font-family: "Montserrat", sans-serif;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, textarea, select {
+  font: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  overflow-wrap: break-word;
+}
+
+code, pre {
+  font-family: monospace, monospace;
+}
+
+.navBar{
+    height: 7vh;
+    background-color: #004bad7a;
+    color: white;
+    width: 100%;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+  }
+.navBar img{
+    height: 60%;
+}
+.navBarOptions{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 40px;
+    font-size: 2.5vh;
+}
+.navBarOptions button{
+  color: white;
+    border: none;
+    cursor: pointer;
+    background-color: inherit; 
+}
+.adminMenu{
+    position: absolute;
+    top: 115%;
+    left: 0;
+    background:rgb(146, 146, 146) ;
+    border: 1px solid #ccc;
+    list-style: none;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+}
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main{
+  flex: 1;
+}

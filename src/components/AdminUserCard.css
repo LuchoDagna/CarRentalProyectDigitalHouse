@@ -1,0 +1,20 @@
+.userCardContainer{
+    width: 80%;
+}
+.userCardContainer form{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 3%;
+    border-radius: 50px;
+
+
+}
+.userCardContainer button{
+    border-radius: 50px;
+    padding: 10px;
+    white-space: nowrap;
+}
+.userCardContainer div{
+    width: 30%;
+}

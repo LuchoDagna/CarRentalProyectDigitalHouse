@@ -1,0 +1,27 @@
+.myAppointmentsContainer{
+    position: relative;
+}
+.fondoMyAppointments{
+    width: 100%;
+    height: 85vh;
+    background-image: url("../assets/img2.jpg");
+    background-size: cover;
+    background-position: bottom;
+    color: white;
+    padding: 10% 5%;
+    font-size: 6vw;
+    text-shadow: 2px 2px 18px rgba(0, 0, 0, 0.8);
+    line-height: 1.2;
+    letter-spacing: -3px;
+    font-family: "Montserrat", sans-serif;
+    top: 0;
+    left: 0;
+}
+.appointmentContainer {
+    background-color: white;
+    width: 100%;
+    margin-top: 2vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}

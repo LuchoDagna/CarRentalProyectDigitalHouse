@@ -1,0 +1,43 @@
+.CarCardContainer{
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    gap: 2px;
+    aspect-ratio: 19/20;
+    border-radius: 30px;
+    background-color: rgb(243, 243, 243);
+    border: solid 1px rgb(218, 218, 218);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.CarCardContainer button{
+    border: none;
+    background-color: #004bad;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 100px;
+    cursor: pointer;
+    margin-bottom: 1VH;
+}
+.imgContainer{
+    aspect-ratio: 16/9;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+
+}
+.imgContainer img{
+     width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.CarCardContainer h2{
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 90%;
+    text-align: center;
+}
