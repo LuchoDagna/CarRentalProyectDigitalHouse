@@ -4,6 +4,7 @@ import { CarCard } from '../components/CarCard';
 import '../styles/Home.css'
 import { useAppointments } from '../contexts/AppointmentContext';
 import DatePicker from 'react-datepicker';
+import flecha from '../assets/flecha.png';
 
 export const Home = () => {
   const{cars,getCars} = useCars();
@@ -18,6 +19,21 @@ export const Home = () => {
   const [endDate, setEndDate] = useState(null);
   const [filterStartDate, setFilterStartDate] = useState(null);
   const [filterEndDate, setFilterEndDate] = useState(null);
+  const [showFilters, setShowFilters] = useState(false);
+  const [isOnMobile, setIsOnMobile] = useState(false);
+
+useEffect(() => {
+  const checkMobile = () => {
+    const isMobile = window.innerWidth <= 900;
+    setIsOnMobile(isMobile);
+  };
+  checkMobile();
+  window.addEventListener('resize', checkMobile);
+
+  return () => {
+    window.removeEventListener('resize', checkMobile);
+  };
+}, []);
   
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -28,6 +44,7 @@ export const Home = () => {
     setCurrentPage(1);
     setFilterStartDate(startDate);
     setFilterEndDate(endDate);
+    console.log(isOnMobile)
     }
 
   const handlePriceChange= (e)=>{
@@ -161,7 +178,15 @@ export const Home = () => {
 
       <div className='cars'>
 
-        <div className='filters'>
+        {isOnMobile?(
+          !showFilters?( 
+          <div className='showFilters' onClick={()=>{setShowFilters(true)}}>
+              <p>Mostrar Filtros</p>
+              <img src={flecha} alt="" />
+          </div>
+          ):(
+            <div className='filters'>
+              <p style={{cursor:"pointer"}} onClick={()=>{setShowFilters(false)}}><u>Ocultar Filtros</u></p>
           <h2>Aplicar filtros</h2>
 
           <div className='filter'>
@@ -255,6 +280,106 @@ export const Home = () => {
             Limpiar Filtros
           </button>
         </div>
+          )
+         
+        ):
+        (<div className='filters'>
+          <h2>Aplicar filtros</h2>
+
+          <div className='filter'>
+
+                <h3>Precio</h3>           
+
+           
+             <label>
+              <input type="checkbox" name="precio" checked={selectedPrice==="price1" && !emptyCheckbox ?true:false} value="price1" onClick={()=>{setEmptyCheckbox(false)}} onChange={handlePriceChange}/>
+              Menos de $50.000
+            </label>
+
+            <label>
+              <input type="checkbox" name="precio" checked={selectedPrice==="price2" && !emptyCheckbox ?true:false} value="price2" onClick={()=>{setEmptyCheckbox(false)}} onChange={handlePriceChange}/>
+              $50.000 - $70.000
+            </label>
+
+            <label>
+              <input type="checkbox" name="precio" checked={selectedPrice==="price3" && !emptyCheckbox ?true:false} value="price3" onClick={()=>{setEmptyCheckbox(false)}} onChange={handlePriceChange}/>
+              $70.000 - $90.000
+            </label>
+
+            <label>
+              <input type="checkbox" name="precio" checked={selectedPrice==="price4" && !emptyCheckbox ?true:false} value="price4" onClick={()=>{setEmptyCheckbox(false)}} onChange={handlePriceChange}/>
+              $90.000 - $110.000
+            </label>
+
+            <label>
+              <input type="checkbox" name="precio" checked={selectedPrice==="price5" && !emptyCheckbox ?true:false} value="price5" onClick={()=>{setEmptyCheckbox(false)}} onChange={handlePriceChange}/>
+              Mas de $110.000
+            </label>
+            
+
+          </div>
+          <div className='filter'>
+            <h3>Cantidad de Puertas</h3>           
+
+            <label>
+              <input type="checkbox" name="doors" value="3" checked={selectedDoors==="3" && !emptyCheckbox ?true:false} onClick={()=>{setEmptyCheckbox(false)}} onChange={(e)=>{setSelectedDoors(e.target.value)}}/>
+              3 puertas
+            </label>
+            <label>
+              <input type="checkbox" name="doors" value="5" checked={selectedDoors==="5" && !emptyCheckbox ?true:false} onClick={()=>{setEmptyCheckbox(false)}} onChange={(e)=>{setSelectedDoors(e.target.value)}}/>
+              5 puertas
+            </label>
+
+          </div>
+          <div className='filter'>
+            <h3>Categoria de auto</h3>           
+
+            <label>
+              <input type="checkbox" name="category" checked={selectedCategory==="1" && !emptyCheckbox ?true:false} onClick={()=>{setEmptyCheckbox(false)}} value="1" onChange={(e)=>{setSelectedCategory(e.target.value)}}/>
+              Hatchback
+            </label>
+
+            <label>
+              <input type="checkbox" name="category" checked={selectedCategory==="2" && !emptyCheckbox ?true:false} onClick={()=>{setEmptyCheckbox(false)}} value="2" onChange={(e)=>{setSelectedCategory(e.target.value)}}/>
+              Sedán
+            </label>
+
+            <label>
+              <input type="checkbox" name="category" checked={selectedCategory==="3" && !emptyCheckbox ?true:false} onClick={()=>{setEmptyCheckbox(false)}} value="3" onChange={(e)=>{setSelectedCategory(e.target.value)}}/>
+              Familiar
+            </label>
+
+            <label>
+              <input type="checkbox" name="category" checked={selectedCategory==="4" && !emptyCheckbox ?true:false} onClick={()=>{setEmptyCheckbox(false)}} value="4" onChange={(e)=>{setSelectedCategory(e.target.value)}}/>
+              Coupé
+            </label>
+
+            <label>
+              <input type="checkbox" name="category" checked={selectedCategory==="5" && !emptyCheckbox ?true:false} onClick={()=>{setEmptyCheckbox(false)}} value="5" onChange={(e)=>{setSelectedCategory(e.target.value)}}/>
+              SUV
+            </label>
+            
+
+          </div>
+          <button className='cleanButton' onClick={()=>{
+            setEmptyCheckbox(true);
+            setSelectedCategory(``);
+            setSelectedDoors(``);
+            setSelectedPrice(``);
+            setCurrentPage(1);
+            setSearchQuery('');
+            setSearchTerm('');
+            setStartDate(null);
+            setEndDate(null);
+            setFilterStartDate(null);
+            setFilterEndDate(null);
+            }}>
+            Limpiar Filtros
+          </button>
+        </div>)
+        }
+
+        
         <div className='CarsContainer'>
           {currentCars.map(car =>(
             <CarCard key={car.id} car={car}/>

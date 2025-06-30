@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext';
 import logo from "../assets/logo.png"
@@ -7,7 +7,20 @@ export const NavBarComponent = () => {
 
   const [showAdminMenu, setShowAdminMenu] = useState(false);
   const {isAuthenticated, isAdmin,logout} = useAuth()
+  const [isOnMobile, setIsOnMobile] = useState(false);
   
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobile = window.innerWidth <= 900;
+      setIsOnMobile(isMobile);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+  
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
 
   const toggleAdminMenu = ()=>{
       setShowAdminMenu(!showAdminMenu)
@@ -15,7 +28,9 @@ export const NavBarComponent = () => {
 
   return (
     <div className='navBar'>
-        <img src={logo} alt="logo"/>
+        
+        <Link className='navBarLogoImg' to='/'><img  src={logo} alt="logo"/></Link>
+        
         <ul className='navBarOptions'>
           {isAuthenticated ? (
             <>
@@ -37,7 +52,11 @@ export const NavBarComponent = () => {
           <li><Link to='/my-appointments'>Mis reservas</Link></li>
           <li><button onClick={logout}>Logout</button></li>
           </>
-          ): (
+          ): (isOnMobile?
+            <>
+            <li><Link to='/login'>Login</Link></li>
+            <li><Link to='/register'>Registrarse</Link></li>
+            </>:
             <>
             <li><Link to='/'>Inicio</Link></li>
             <li><Link to='/login'>Login</Link></li>

@@ -57,7 +57,7 @@ export const ReserveCar = () => {
     setTranslateCarruesel2(translateCarrusel2+12.5)
   }
   const handleClickRight = ()=>{
-    if(translateCarrusel2<=-75)return
+    if(translateCarrusel2<=-87.5)return
     setTranslateCarruesel2(translateCarrusel2-12.5)
   }
   
@@ -273,8 +273,8 @@ export const ReserveCar = () => {
             </div>
         </div>
             <div className='reserveCarCarruselFlechas'>
-                <img src={flecha} onClick={handleClickLeft} id="flechaIzq" />
-                <img src={flecha} onClick={handleClickRight} id="flechaDer" />
+                <img style={translateCarrusel2>=0?{visibility:"hidden"}:{}} src={flecha} onClick={handleClickLeft} id="flechaIzq" />
+                <img style={translateCarrusel2<=-87.5?{visibility:"hidden"}:{}} src={flecha} onClick={handleClickRight} id="flechaDer" />
             </div>
       </div>
     </div>

@@ -125,3 +125,33 @@ background-color: white;
         cursor: pointer;
 
 }
+@media (max-width:900px) {
+    .reserveCarContainer{
+        flex-direction: column;
+        gap: 15px;
+        width: 90%;
+        margin:50px auto;
+        margin-bottom: 30px;
+        padding: 2%;
+    }
+    .carImgsContainer{
+        width: 100%;
+    }
+    .carInfoContainer{
+        width: 100%;
+    }
+    .otherCars{
+        width: 90%;
+        font-size: 24px;
+    }
+    .reserveCarCarruselFlechas{
+        z-index: 10;
+        width: 95%;
+    }
+    #flechaDer{
+        width: 40px;
+    }
+    #flechaIzq{
+        width: 40px;
+    }
+}

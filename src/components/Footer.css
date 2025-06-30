@@ -8,3 +8,11 @@ footer{
     padding: 2%;
     margin-top: 5%;
 }
+@media (max-width:900px) {
+    footer{
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        font-size: 3vw;
+    }
+}

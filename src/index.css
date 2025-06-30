@@ -63,15 +63,18 @@ code, pre {
     top: 0;
     z-index: 10;
   }
-.navBar img{
-    height: 60%;
+.navBarLogoImg{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .navBarOptions{
     display: flex;
     align-items: center;
     height: 100%;
     gap: 40px;
-    font-size: 2.5vh;
+    font-size: 28px;
 }
 .navBarOptions button{
   color: white;
@@ -94,6 +97,15 @@ code, pre {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+@media (max-width:900px) {
+  .navBar img{
+    height: 60%;
+  }
+  .navBarOptions{
+    gap: 10px;
+    font-size: 18px;
+  }
 }
 main{
   flex: 1;
