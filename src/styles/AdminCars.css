@@ -3,6 +3,7 @@
 }
 .saveCar{
     width: 90%;
+    height: 90px;
     display: flex;
     gap: 1%;
     align-items: center;
@@ -35,4 +36,23 @@ select{
     padding: 10px;
     border: none;
     border-radius: 50px;
+}
+@media (max-width:900px) {
+    .saveCar{
+        height: fit-content;
+        width:70%;
+        flex-direction: column;
+        align-items: center;
+        padding: 2% 0;
+        gap:5px;
+    }
+    .saveCar div{
+        width: 80%;
+    }
+    .saveCarCategory{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
 }

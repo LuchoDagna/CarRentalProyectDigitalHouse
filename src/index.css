@@ -51,7 +51,7 @@ code, pre {
 }
 
 .navBar{
-    height: 7vh;
+    height: 70px;
     background-color: #004bad7a;
     color: white;
     width: 100%;
@@ -63,11 +63,9 @@ code, pre {
     top: 0;
     z-index: 10;
   }
-.navBarLogoImg{
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.navBar img{
+    height: 60%;
+    cursor: pointer;
 }
 .navBarOptions{
     display: flex;
@@ -93,18 +91,54 @@ code, pre {
     padding: 10px;
     text-align: center;
 }
+.menu{
+  height:40px !important;
+  display: none;
+}
 .page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
+.navBarOptionsMobile{
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding:5%;
+  box-sizing: border-box;
+  height: 100vh;
+  width: fit-content;
+  background-color: #004bad;
+}
+.navBarOptionsMobile li{
+  width: 50vw;
+  font-size: 28px;
+  text-align: center;
+}
+.navBarOptionsMobile button{
+  border: none;
+}
+.goBackBtn{
+  height: 45px;
+  display: flex;
+  justify-content: flex-end;
+}
+.goBackBtn img{
+  height: 100% !important;
+}
 @media (max-width:900px) {
   .navBar img{
-    height: 60%;
+    height: 40%;
   }
   .navBarOptions{
     gap: 10px;
-    font-size: 18px;
+    font-size: 22px;
+  }
+  .navBarOptions li{
+    display: none;
+  }
+  .menu{
+    display: block;
   }
 }
 main{

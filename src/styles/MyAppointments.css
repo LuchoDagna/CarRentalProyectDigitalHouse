@@ -1,6 +1,12 @@
 .myAppointmentsContainer{
     position: relative;
 }
+.sinReservas{
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+}
 .fondoMyAppointments{
     width: 100%;
     height: 85vh;
@@ -24,4 +30,11 @@
     display: flex;
     flex-direction: column;
     gap: 2vw;
+}
+@media (max-width:900px) {
+    .fondoMyAppointments{
+        font-size: 80px;
+        padding: 20% 5%;
+
+    }
 }

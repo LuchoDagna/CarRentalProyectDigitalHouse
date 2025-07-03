@@ -18,3 +18,11 @@
 .userCardContainer div{
     width: 30%;
 }
+@media (max-width:900px) {
+    .userCardContainer form{
+        flex-direction: column;
+    }
+    .userCardContainer div{
+        width: 90%;
+    }
+}

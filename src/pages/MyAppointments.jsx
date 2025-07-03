@@ -26,7 +26,7 @@ export const MyAppointments = () => {
       </div>
         <div className='appointmentContainer'>
             {appointments.length===0 ? (
-              <p>No tenés reservas todavía.</p>
+              <p className='sinReservas'>Todavia no tienes reservas</p>
             ) : (
               appointments.slice().reverse().map(app => (
                 <AppointmentCard key={app.id} appointment={app} refetchAppointments={getAppointmentsById} />

@@ -19,3 +19,13 @@
     white-space: nowrap;
     margin: 0 1vw;
 }
+@media (max-width:1600px) {
+    .appointmentCardContainerForm{
+        flex-direction: column;
+        justify-content: center;
+    }
+    .appointmentCardContainerForm>*{
+        text-align: center;
+        width: 90%;
+    }
+}
