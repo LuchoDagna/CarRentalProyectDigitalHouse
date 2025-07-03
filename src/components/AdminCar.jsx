@@ -242,6 +242,7 @@ export const AdminCar = ({ car, onCarDeleted }) => {
                   }
                   className='flecha'
                   alt='flecha1'
+                  id='flecha1'
                 />
                 <img
                   src={flecha}
@@ -253,6 +254,8 @@ export const AdminCar = ({ car, onCarDeleted }) => {
                   }
                   className='flecha'
                   alt='flecha2'
+                  id='flecha2'
+
                 />
               </div>
             </div>
