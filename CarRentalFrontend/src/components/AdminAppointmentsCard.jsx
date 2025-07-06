@@ -20,14 +20,14 @@ export const AdminAppointmentsCard = ({app}) => {
     const [appForm, setAppForm] = useState({
         startDate:app.startDate,
         endDate:app.endDate,
-        carId:app.carId,
-        userId:app.userId,
+        carId:app.car?.id,
+        userId:app.user?.id,
         status: app.status
     });
 
    useEffect(() => {
   const fetchCar = async () => {
-    const carFound = await getCarsById(app.carId);
+    const carFound = await getCarsById(app.car.id);
     setCar(carFound);
   };
 
@@ -70,7 +70,7 @@ export const AdminAppointmentsCard = ({app}) => {
             <div><strong>Fecha de inicio: </strong>{new Date(app.startDate).toLocaleDateString("es-AR")}</div>
             <div><strong>Fecha de finalizacion: </strong>{new Date(app.endDate).toLocaleDateString("es-AR")}</div>
             <div><strong>Auto: </strong>{car.model}</div>
-            <div><strong>Usuario: </strong>{app.userId}</div>
+            <div><strong>Usuario: </strong>{app.user?.email}</div>
             <div>
                 <label htmlFor="status"><strong>Estado: </strong></label>
                 {isEditing ? (

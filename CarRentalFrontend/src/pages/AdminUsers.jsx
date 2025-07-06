@@ -18,6 +18,7 @@ const{user, token} = useAuth();
 
 
   return (
+    <>
     <div className='adminUsersContainer'>
       <h2>Administrar Usuarios registrados</h2>
       {/* ADMINISTRAR CADA USER  */}
@@ -27,5 +28,9 @@ const{user, token} = useAuth();
                   ))}
             </div>
     </div>
+    <div className='adminMobile'>
+        <h3>No se puede ver el panel de admin desde un celular</h3>
+    </div>
+    </>
   )
 }

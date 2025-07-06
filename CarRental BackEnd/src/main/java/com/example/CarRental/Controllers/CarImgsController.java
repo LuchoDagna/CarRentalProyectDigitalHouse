@@ -2,6 +2,7 @@ package com.example.CarRental.Controllers;
 
 import com.example.CarRental.Entities.CarImgs;
 import com.example.CarRental.Services.CarImgsService;
+import com.example.CarRental.dto.CarImgDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +31,7 @@ public class CarImgsController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<CarImgs> save(@RequestBody CarImgs carImg) {
+    public ResponseEntity<CarImgs> save(@RequestBody CarImgDTO carImg) {
         return ResponseEntity.ok(carImgsService.save(carImg));
     }
 

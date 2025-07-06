@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useCars } from '../contexts/CarsContext'
 import { AdminCar } from '../components/AdminCar';
 import "../styles/AdminCars.css"
+import { useCategories } from '../contexts/CarCategoriesContext';
 
 export const AdminCars = () => {
   const { cars, getCars, saveCar } = useCars();
+  const[categoryName, setCategoryName]= useState('')
+  const[categoryToDelete, setCategoryToDelete]= useState(null)
+  const {categories,getCategories, saveCategory, deleteCategory} = useCategories();
+
   const [newCar, setNewCar] = useState({
     model: "",
     year: "",
@@ -13,7 +18,7 @@ export const AdminCars = () => {
     transmition: "",
     mainImgUrl: "",
     available: "",
-    categoryId: ""
+    carCategoryId: ""
   });
 
   // Mapeo de etiquetas amigables
@@ -25,12 +30,37 @@ export const AdminCars = () => {
     transmition: 'Transmisión',
     mainImgUrl: 'URL de imagen',
     available: 'Disponible',
-    categoryId: 'Categoría'
+    carCategoryId: 'Categoría'
   };
+ 
+ useEffect(() => {
+  getCars();
+}, []);
+ 
+useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        await getCategories();
+      } catch (error) {
+        console.error("Error loading categories:", error);
+      }
+    };
+    fetchCategories();
+  }, [getCategories]);
 
-  useEffect(() => {
-    getCars();
-  }, []);
+  const handleCategorySaveChange=(e)=>{
+    setCategoryName(e.target.value)
+  }
+  const handleCategorySave= ()=>{
+      saveCategory(categoryName)
+      setCategoryName('')
+  }
+  const handleCategoryDelete=(e)=>{
+    deleteCategory(Number(categoryToDelete))
+  }
+  const handleChangeCategoryDelete=(e)=>{
+    setCategoryToDelete(e.target.value)
+  }
 
   const handleSave = async (e) => {
     e.preventDefault();
@@ -43,7 +73,7 @@ export const AdminCars = () => {
         newCar.transmition,
         newCar.mainImgUrl,
         newCar.available === 'true',
-        parseInt(newCar.categoryId, 10)
+        parseInt(newCar.carCategoryId, 10)
       );
       getCars();
       setNewCar({
@@ -54,7 +84,7 @@ export const AdminCars = () => {
         transmition: "",
         mainImgUrl: "",
         available: "",
-        categoryId: ""
+        carCategoryId: ""
       });
     } catch (error) {
       console.error("Error al guardar el auto:", error);
@@ -68,12 +98,14 @@ export const AdminCars = () => {
   };
 
   return (
+    <>
+    
     <div className='AdminCarsContainer'>
       <h2 className='saveCarTitle'>Guardar un nuevo auto</h2>
       <form onSubmit={handleSave} className='saveCar'>
         {/* Campos dinámicos excepto category */}
         {Object.entries(newCar)
-          .filter(([key]) => key !== 'categoryId')
+          .filter(([key]) => key !== 'carCategoryId')
           .map(([key, value]) => {
             // Select para available
             if (key === 'available') {
@@ -128,32 +160,63 @@ export const AdminCars = () => {
 
         {/* Selector de categoría */}
         <div className='saveCarCategory'>
-          <label htmlFor="categoryId">{labelMapping['categoryId']}</label>
+          <label htmlFor="carCategoryId">{labelMapping['carCategoryId']}</label>
           <select
-            id="categoryId"
-            name="categoryId"
-            value={newCar.categoryId}
+            id="carCategoryId"
+            name="carCategoryId"
+            value={newCar.carCategoryId}
             onChange={handleChange}
           >
             <option value="">Elegir categoría</option>
-            <option value="1">HatchBack</option>
-            <option value="2">Sedán</option>
-            <option value="3">Familiar</option>
-            <option value="4">Coupé</option>
-            <option value="5">SUV</option>
+            {
+            categories.map(category => (
+              <option key={category.id} value={category.id}>{category.name}</option>
+            ))
+            }
           </select>
         </div>
-
         <button type='submit'>Guardar Auto</button>
       </form>
 
+      <div className='createNewCategoryContainer'>      
+          <h2>Crear nueva categoria de auto</h2>
+          <p>Ingresa el nombre de la nueva categoria</p>
+            <input onChange={handleCategorySaveChange} value={categoryName} type="text" id="" placeholder='Nueva categoria'/>
+            <div className='createNewCategoryButtons'>
+                <button onClick={handleCategorySave}>Agregar</button>
+            </div>
+        </div>
+      <div className='createNewCategoryContainer'>      
+          <h2>Borrar categoria</h2>
+          <p>Elige la categoria a borrar </p>
+            <select
+            id="carCategoryId"
+            name="carCategoryId"
+            value={categoryToDelete}
+            onChange={handleChangeCategoryDelete}
+          >
+            <option value="">Elegir categoría</option>
+            {
+            categories.map(category => (
+              <option key={category.id} value={category.id}>{category.name}</option>
+            ))
+            }
+          </select>
+            <div className='createNewCategoryButtons'>
+                <button onClick={handleCategoryDelete}>Borrar</button>
+            </div>
+        </div>
       <h2 className='carsTitle'>Lista de autos ya cargados</h2>
       <div className='carsContainer'>
         {cars.slice().reverse().map(car => (
-          <AdminCar key={car.id} car={car} onCarDeleted={getCars} />
+          <AdminCar key={car.id} car={car} onCarDeleted={getCars}/>
         ))}
       </div>
     </div>
+    <div className='adminMobile'>
+        <h3>No se puede ver el panel de admin desde un celular</h3>
+    </div>
+    </>
   );
 };
 

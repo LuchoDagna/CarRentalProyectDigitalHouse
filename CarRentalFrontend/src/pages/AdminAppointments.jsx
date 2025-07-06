@@ -12,6 +12,7 @@ export const AdminAppointments = () => {
   }, [])
   
   return (
+    <>
     <div className='AdminAppointmentsContainer'>
       <h2>Lista de Reservas</h2>
       <div className='AppointmentsContainer'>
@@ -20,5 +21,10 @@ export const AdminAppointments = () => {
         ))}
       </div>
     </div>
+    <div className='adminMobile'>
+        <h3>No se puede ver el panel de admin desde un celular</h3>
+    </div>
+    
+    </>
   )
 }

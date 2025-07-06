@@ -173,7 +173,7 @@ export const ReserveCar = () => {
       </div>
       
       <div className='carInfoContainer'>
-        <h2>{car.brand} {car.model}</h2>
+        <h2>{car.model}</h2>
         <p>Precio por día: ${car.priceADay.toLocaleString()}</p>
         <h3>Seleccioná fechas para tu reserva</h3>
 
@@ -254,12 +254,11 @@ export const ReserveCar = () => {
         
         <div className='carCaracteristicas'>
           <h3>Características:</h3>
-          <p><b>Marca:</b> {car.brand}</p>
           <p><b>Modelo:</b> {car.model}</p>
           <p><b>Puertas:</b> {car.doors}</p>
           <p><b>Transmisión:</b> {car.transmition}</p>
           <p><b>Año:</b> {car.year}</p>
-          <p><b>Categoría:</b> {categoryNames[car.categoryId]}</p>
+          <p><b>Categoría:</b> {categoryNames[car.carCategory.id]}</p>
         </div>
       </div>
       </div>

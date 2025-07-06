@@ -86,19 +86,6 @@ export const NavBarComponent = () => {
             
             
             <li onClick={toggleSeeMenu}><Link to='/'>Home</Link></li>
-            {isAdmin && (
-              
-              <li style={{position: 'relative'}}>
-                <li onClick={toggleAdminMenu}>Administrar</li>
-                {showAdminMenu && (
-                  <ul className='adminMenu'>
-                    <li onClick={()=>{toggleAdminMenu(); toggleSeeMenu()}}><Link to='/admin/cars'>Autos</Link></li>
-                    <li onClick={()=>{toggleAdminMenu(); toggleSeeMenu()}}><Link to='/admin/users'>Usuarios</Link></li>
-                    <li onClick={()=>{toggleAdminMenu(); toggleSeeMenu()}}><Link to='/admin/appointments'>Reservas</Link></li>
-                  </ul>
-                )}
-              </li>
-            )}
             <li onClick={toggleSeeMenu}><Link to='/my-appointments'>Mis reservas</Link></li>
             <li onClick={()=>{logout();toggleSeeMenu()}}>Logout</li>
             </>

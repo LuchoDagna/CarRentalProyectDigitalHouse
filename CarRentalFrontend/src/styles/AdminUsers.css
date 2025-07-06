@@ -12,3 +12,8 @@
     align-items: center;
     gap: 1vw;
 }
+@media (max-width:1024px){
+    .adminUsersContainer{
+        display: none;
+    }
+}

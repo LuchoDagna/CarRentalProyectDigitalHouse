@@ -155,7 +155,6 @@ input{
     cursor: pointer;
 
 }
-.imgsEditorContainer
 .sureDelete{
     position: fixed;
     z-index: 100 !important;

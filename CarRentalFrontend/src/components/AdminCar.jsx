@@ -4,11 +4,12 @@ import '../components/AdminCar.css'
 import { useImgs } from '../contexts/CarImgsContext';
 import flecha from '../assets/flecha.png'
 import cruz from '../assets/cruz.png'
+import { useCategories } from '../contexts/CarCategoriesContext';
 
-export const AdminCar = ({ car, onCarDeleted }) => {
+export const AdminCar = ({ car, onCarDeleted}) => {
   const { updateCar, deleteCar } = useCars();
   const { imagesById, getImagesById, saveImage, deleteImage } = useImgs();
-
+    const {categories} = useCategories();
   const [isEditing, setIsEditing] = useState(false);
   const [newImgUrl, setNewImgUrl] = useState('');
   const [isEditingImgs, setIsEditingImgs] = useState(false);
@@ -22,8 +23,9 @@ export const AdminCar = ({ car, onCarDeleted }) => {
     transmition: car.transmition,
     mainImgUrl: car.mainImgUrl,
     available: car.available,
-    categoryId: car.categoryId.toString()
+    carCategoryId: car.carCategory.id
   });
+  
 
   const labelMapping = {
     model: 'Modelo',
@@ -33,7 +35,7 @@ export const AdminCar = ({ car, onCarDeleted }) => {
     transmition: 'Transmisión',
     mainImgUrl: 'URL de imagen principal',
     available: 'Disponible',
-    categoryId: 'Categoría'
+    carCategoryId: 'Categoría'
   };
 
   useEffect(() => {
@@ -66,7 +68,7 @@ export const AdminCar = ({ car, onCarDeleted }) => {
       transmition: car.transmition,
       mainImgUrl: car.mainImgUrl,
       available: car.available,
-      categoryId: car.categoryId.toString()
+      carCategoryId: car.carCategory.id
     });
     setIsEditing(false);
   };
@@ -88,7 +90,7 @@ export const AdminCar = ({ car, onCarDeleted }) => {
       form.transmition,
       form.mainImgUrl,
       form.available === 'true',
-      parseInt(form.categoryId, 10)
+      parseInt(form.carCategoryId, 10)
     );
     setIsEditing(false);
   };
@@ -115,7 +117,7 @@ export const AdminCar = ({ car, onCarDeleted }) => {
     <div className='carContainer'>
       <form className='formCar' onSubmit={handleSave}>
         {Object.entries(form)
-          .filter(([key]) => key !== 'categoryId')
+          .filter(([key]) => key !== 'carCategoryId')
           .map(([key, value]) => (
             <div className='infoContainer' key={key}>
               <label htmlFor={key}>{labelMapping[key]}</label>
@@ -155,19 +157,19 @@ export const AdminCar = ({ car, onCarDeleted }) => {
           ))}
 
         <div className='infoContainer'>
-          <label htmlFor='categoryId'>{labelMapping['categoryId']}</label>
+          <label htmlFor='carCategoryId'>{labelMapping['carCategoryId']}</label>
           <select
-            id='categoryId'
-            name='categoryId'
-            value={form.categoryId}
+            id='carCategoryId'
+            name='carCategoryId'
+            value={form.carCategoryId}
             onChange={handleChange}
             disabled={!isEditing}
           >
-            <option value='1'>HatchBack</option>
-            <option value='2'>Sedán</option>
-            <option value='3'>Familiar</option>
-            <option value='4'>Coupé</option>
-            <option value='5'>SUV</option>
+            {
+            categories.map(category => (
+              <option key={category.id} value={category.id}>{category.name}</option>
+            ))
+            }
           </select>
         </div>
 

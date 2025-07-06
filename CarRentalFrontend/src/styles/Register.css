@@ -28,6 +28,18 @@
     margin-top: 2%;
     cursor: pointer;
 }
+.error-message {
+  color: #ff4d4f;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  text-align: left;
+  width: 100%;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+  width: 100%;
+}
 
 @media (max-width:900px) {
     .registerFormContainer{

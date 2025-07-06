@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ICarsRepository extends JpaRepository<Cars,Integer> {
-  List<Cars> findByCategoryId(Integer id);
+  List<Cars> findByCarCategory_Id(Integer id);
 }

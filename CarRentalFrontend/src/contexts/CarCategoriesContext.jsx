@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useAuth } from './AuthContext';
 
 const CarCategoriesContext = createContext()
@@ -22,7 +22,7 @@ export const CarCategoriesProvider = ({ children }) => {
                }
                const data = await response.json();
                setCategories(data)
-           }
+          }
            catch(error){
              console.log("Error en el fetch: " + error);
              throw error;
@@ -47,6 +47,10 @@ export const CarCategoriesProvider = ({ children }) => {
            })
            if (response.ok) {
              console.log("Categoria guardada exitosamente");
+             useEffect(() => {
+               getCategories();
+             }, [])
+             
            } else {
              console.error("Error al guardar la categoria");
            }

@@ -61,7 +61,7 @@ export const CarsProvider = ({ children }) => {
 
     // GUARDAR AUTO
 
-    const saveCar = async(model,year,priceADay,doors,transmition,mainImgUrl,available,categoryId) =>{
+    const saveCar = async(model,year,priceADay,doors,transmition,mainImgUrl,available,carCategoryId) =>{
       if(user?.role !== "ADMIN"){
         console.log("No es admin para ejecutar este fetch")
         return
@@ -80,13 +80,14 @@ export const CarsProvider = ({ children }) => {
             transmition,
             mainImgUrl,
             available,
-            categoryId
+            carCategoryId
           })
         })
         if (response.ok) {
           console.log("Auto guardado exitosamente");
         } else {
-          console.error("Error al guardar el auto");
+          const errorText = await response.text(); 
+          console.error("Error al guardar el auto:", errorText);
         }
       }
       catch(error){
@@ -124,13 +125,14 @@ export const CarsProvider = ({ children }) => {
 
     // ACTUALIZAR AUTO
 
-    const updateCar=async(id,model,year,priceADay,doors,transmition,mainImgUrl,available,categoryId)=>{
+    const updateCar=async(id,model,year,priceADay,doors,transmition,mainImgUrl,available,carCategoryId)=>{
       if(user?.role !== "ADMIN"){
         console.log("No es admin para ejecutar este fetch")
         return
       }
       try{
-        const response =await fetch("http://localhost:8080/cars/update",{
+        console.log("ID enviado:", id);
+        const response =await fetch(`http://localhost:8080/cars/update`,{
           method: "PUT",
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -145,13 +147,14 @@ export const CarsProvider = ({ children }) => {
             transmition,
             mainImgUrl,
             available,
-            categoryId
+            carCategoryId
           })
         })
         if (response.ok) {
           console.log("Auto actualizado exitosamente");
         } else {
-          console.error("Error al actualizar el auto");
+          const errorText = await response.text(); 
+          console.error("Error al actualizar el auto:", errorText);
         }
       }catch(error){
         console.log("Error en el fetch: " + error);

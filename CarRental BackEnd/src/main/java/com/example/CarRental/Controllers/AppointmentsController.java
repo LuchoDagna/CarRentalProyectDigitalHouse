@@ -4,6 +4,8 @@ package com.example.CarRental.Controllers;
 import com.example.CarRental.Entities.Appointments;
 import com.example.CarRental.Entities.Cars;
 import com.example.CarRental.Services.AppointmentsService;
+import com.example.CarRental.dto.AppointmentDTO;
+import com.example.CarRental.dto.UpdateAppointmentDTO;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +26,8 @@ public class AppointmentsController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Appointments> saveAppointment(@RequestBody Appointments appointment){
-        return ResponseEntity.ok(appointmentsService.save(appointment));
+    public ResponseEntity<Appointments> saveAppointment(@RequestBody AppointmentDTO dto){
+        return ResponseEntity.ok(appointmentsService.save(dto));
     }
 
     @GetMapping("/findAll")
@@ -46,11 +48,11 @@ public class AppointmentsController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<String> updateAppointment(@RequestBody Appointments appointment) {
+    public ResponseEntity<String> updateAppointment(@RequestBody UpdateAppointmentDTO dto) {
         ResponseEntity<String> response;
-        Optional<Appointments> userToLookFor = appointmentsService.findById(appointment.getId());
-        if (userToLookFor.isPresent()){
-            appointmentsService.update(appointment);
+        Optional<Appointments> appointmentToLookFor = appointmentsService.findById(dto.getId());
+        if (appointmentToLookFor.isPresent()){
+            appointmentsService.update(dto);
             response = ResponseEntity.ok("El appointment se actualizo correctamente");
         }
         else{

@@ -4,13 +4,12 @@ import "../components/AppointmentCard.css"
 import { useAppointments } from '../contexts/AppointmentContext';
 
 export const AppointmentCard = ({appointment, refetchAppointments}) => {
-  const {getCarsById} = useCars();
   const {updateAppointment} = useAppointments();
   const [car,setCar] = useState([])
   const [isCanceling,setIsCanceling] = useState(false)
 
   const fetchCar = async () => {
-  const carFound = await getCarsById(appointment.carId);
+  const carFound = appointment.car;
   setCar(carFound);
    };
   useEffect(() => {
@@ -36,8 +35,8 @@ const cancelarReserva=async()=>{
     appointment.id,
     appointment.startDate,
     appointment.endDate,
-    appointment.carId,
-    appointment.userId,
+    appointment.car.id,
+    appointment.user.id,
     "CANCELADO"
   )
   refetchAppointments();

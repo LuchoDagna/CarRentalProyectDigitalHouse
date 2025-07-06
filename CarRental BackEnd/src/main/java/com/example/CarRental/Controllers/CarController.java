@@ -3,6 +3,8 @@ package com.example.CarRental.Controllers;
 import com.example.CarRental.Entities.Cars;
 import com.example.CarRental.Entities.Users;
 import com.example.CarRental.Services.CarsService;
+import com.example.CarRental.dto.CarDTO;
+import com.example.CarRental.dto.UpdateCarDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +23,7 @@ public class CarController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Cars> save(@RequestBody Cars car){
+    public ResponseEntity<Cars> save(@RequestBody CarDTO car){
         return ResponseEntity.ok(carsService.save(car));
     }
 
@@ -55,7 +57,12 @@ public class CarController {
         }
     }
     @PutMapping("/update")
-    public ResponseEntity<String> updateCar(@RequestBody Cars car) {
+    public ResponseEntity<String> updateCar(@RequestBody UpdateCarDTO car) {
+        System.out.println("ID recibido: " + car.getId()); // 👈 Verifica esto
+        if (car.getId() == null) {
+            throw new IllegalArgumentException("El ID es nulo en el backend");
+        }
+
         ResponseEntity<String> response;
         Optional<Cars> userToLookFor = carsService.findById(car.getId());
         if (userToLookFor.isPresent()){

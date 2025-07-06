@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IAppointmentsRepository extends JpaRepository<Appointments,Integer> {
     List<Appointments> findByStatus(String status);
-    List<Appointments> findByUserId(Integer userId);
-    List<Appointments> findByCarId(Integer carId);
+    List<Appointments> findByUser_Id(Integer userId);
+    List<Appointments> findByCar_Id(Integer carId);
     void deleteByCarId(Integer carId);
 }

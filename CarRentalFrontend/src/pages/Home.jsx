@@ -117,7 +117,7 @@ useEffect(() => {
                 })();
                 
                 const matchesDoors = selectedDoors ? car.doors.toString() === selectedDoors : true;
-                const matchesCategory = selectedCategory ? car.categoryId.toString() === selectedCategory : true;
+                const matchesCategory = selectedCategory ? car.carCategory.id.toString() === selectedCategory : true;
                  const matchesSearch = searchQuery 
                   ? car.model.toLowerCase().includes(searchQuery.toLowerCase())
                   : true;

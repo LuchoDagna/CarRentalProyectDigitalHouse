@@ -1,7 +1,14 @@
 package com.example.CarRental.Services;
 
 import com.example.CarRental.Entities.Appointments;
+import com.example.CarRental.Entities.Cars;
+import com.example.CarRental.Entities.Users;
 import com.example.CarRental.Repositories.IAppointmentsRepository;
+import com.example.CarRental.Repositories.ICarsRepository;
+import com.example.CarRental.Repositories.IUsersRepository;
+import com.example.CarRental.dto.AppointmentDTO;
+import com.example.CarRental.dto.UpdateAppointmentDTO;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
@@ -13,8 +20,23 @@ import java.util.Optional;
 public class AppointmentsService {
     @Autowired
     private IAppointmentsRepository appointmentsRepository;
+    @Autowired
+    private IUsersRepository usersRepository;
+    @Autowired
+    private ICarsRepository carsRepository;
 
-    public Appointments save(Appointments appointment){
+    public Appointments save(AppointmentDTO dto){
+        Users user = usersRepository.findById(dto.getUserId())
+                .orElseThrow(()->new RuntimeException("User not Found"));
+        Cars car = carsRepository.findById(dto.getCarId())
+                .orElseThrow(()->new RuntimeException("Car not found"));
+        Appointments appointment = Appointments.builder()
+                .startDate(dto.getStartDate())
+                .endDate(dto.getEndDate())
+                .status(dto.getStatus())
+                .user(user)
+                .car(car)
+                .build();
        return appointmentsRepository.save(appointment);
     }
 
@@ -28,8 +50,23 @@ public class AppointmentsService {
         }
     }
 
-    public void update(Appointments appointment){
-        appointmentsRepository.save(appointment);
+    public void update(UpdateAppointmentDTO dto){
+        Appointments existing = appointmentsRepository.findById(dto.getId())
+                .orElseThrow(() -> new RuntimeException("Appointment not found"));
+
+        Cars car = carsRepository.findById(dto.getCarId())
+                .orElseThrow(() -> new RuntimeException("Car not found"));
+
+        Users user = usersRepository.findById(dto.getUserId())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        existing.setStartDate(dto.getStartDate());
+        existing.setEndDate(dto.getEndDate());
+        existing.setStatus(dto.getStatus());
+        existing.setCar(car);
+        existing.setUser(user);
+
+        appointmentsRepository.save(existing);
     }
 
     public Optional<Appointments> findById(Integer id){
@@ -45,10 +82,10 @@ public class AppointmentsService {
     }
 
     public List<Appointments> findByUserId(Integer id){
-        return appointmentsRepository.findByUserId(id);
+        return appointmentsRepository.findByUser_Id(id);
     }
 
     public List<Appointments> findByCarId(Integer id){
-        return appointmentsRepository.findByCarId(id);
+        return appointmentsRepository.findByCar_Id(id);
     }
 }

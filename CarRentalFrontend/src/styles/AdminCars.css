@@ -37,6 +37,16 @@ select{
     border: none;
     border-radius: 50px;
 }
+.createNewCategoryContainer{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    height: 30vh;
+    gap: 20%;
+}
 @media (max-width:900px) {
     .saveCar{
         height: fit-content;
@@ -54,5 +64,10 @@ select{
         justify-content: center;
         align-items: center;
         gap: 10px;
+    }
+}
+@media (max-width:1024px){
+    .AdminCarsContainer{
+        display: none;
     }
 }
